@@ -6,22 +6,26 @@
 // For more info, check out this site...
 // https://lastminuteengineers.com/esp32-pinout-reference/
 
-/**
-*                EN      23
-* Input Only --  36      22
-* Input Only --  39      1  -- If you use these, you cannot flash...
-* Input Only --  34      3  -- If you use these, you cannot flash...
-* Input Only --  35      21
-*                32      19
-*                33      18
-*                25      5  -- Must be HIGH during boot
-*                26      17 
-*                27      16
-*                14      4
-*low during boot 12      2
-*                13      15
+/**   Here are the ESP32 Assignments that are constructed below...
+*                EN      23 joyButton
+*        joyX    36*     22 Sck
+*        joyY    39*     1  -- If you use these, you cannot flash...
+*        Pot1    34*     3  -- If you use these, you cannot flash...
+*        Pot2    35*     21 Sda
+*        mute2   32      19 buttonY
+*        solo1   33      18 buttonB
+*        rReady2 25      5$ ledPin
+*        mute1   26      17 buttonA
+*        solo2   27      16 buttonX
+*        rReady1 14      4 pot3
+*          Enc1B 12#     2^ 
+*          Enc1A 13      15 pot4
 *                Grnd    Grnd
 *                Vin     3v3
+*      *= Input Only #= Must be low during boot 
+*     $=Must be high during boot ^= Linked to onboard led
+*
+*
 */
 
 //Constants:
