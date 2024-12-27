@@ -24,9 +24,24 @@
 *                Vin     3v3
 *      *= Input Only #= Must be low during boot 
 *     $=Must be high during boot ^= Linked to onboard led
-*
-*
+*       Arduino Nano....
+*               1    ...     Vin (square)
+*               2    ...     GND  
+*               3            28
+*               GND          5v
+*               5 D2      A7 26  
+*               6 D3      A6 25
+*               7 D4      A5 24
+*               8 D5      A4 23
+*               9 D6      A3 22
+*               10 D7     A2 21
+*               11 D8     A1 20
+*               12 D9     A0 19
+*               13 D10   Ref 18
+*               14 D11    3.3v
+*               15 D12   D13 16
 */
+
 
 //Constants:
 //Banks...
