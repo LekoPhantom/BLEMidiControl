@@ -17,7 +17,7 @@
 *        rReady2 25      5$ ledPin
 *        mute1   26      17 buttonA
 *        solo2   27      16 buttonX
-*        rReady1 14      4 pot3
+*        rReady1 14      4  pot3
 *          Enc1B 12#     2^ 
 *          Enc1A 13      15 pot4
 *                Grnd    Grnd
