@@ -18,7 +18,7 @@ constexpr uint8_t SCREEN_WIDTH = 128;
 constexpr uint8_t SCREEN_HEIGHT = 64;
 constexpr int8_t OLED_reset = -1; // Use the external RC circuit for reset
 
-// Instantiate the display
+// Instantiate the display -- This line is different than the SPI.
 Adafruit_SSD1306 ssd1306Display = {SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_reset};
 
 // --------------------------- Display interface ---------------------------- //
