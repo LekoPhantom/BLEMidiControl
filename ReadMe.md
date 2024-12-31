@@ -39,7 +39,7 @@ Mute
 Stereo Out display (two rings?) |-- Array 2 + 3
 
 
-QUestions...
+Questions...
 VU meters, how do we switch between balance and vu?
 How do we use banks without pins (for the led feedback?)
 Rude Solo?
