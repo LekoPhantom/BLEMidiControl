@@ -42,9 +42,9 @@ Stereo Out display (two rings?) |-- Array 2 + 3
 Questions...
 VU meters, how do we switch between balance and vu?
 How do we use banks without pins (for the led feedback?)
-Rude Solo?
+Rude Solo --  Yes
 Scribble strips?
-Track Color?
+Track Color? -- Probably
 
 
 
