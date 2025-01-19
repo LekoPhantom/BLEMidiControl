@@ -65,13 +65,15 @@ const int Enc1A = 13;
 const int Enc1B = 12;
 
 //Leds
-const uint8_t ledBrightness = 10;
-const uint8_t ledPin = 5;
+const int ledBrightness = 10;
+const int ledPin = 5;
 
 //Joystick
 const int joyX = 36;
 const int joyY = 39;
 const int joyButton = 23;
+
+const int totalNumberLeds = 30;
 
 
 #endif

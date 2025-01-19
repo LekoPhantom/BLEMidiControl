@@ -1,19 +1,20 @@
 #include <ButtonAssignments.h>
-#include <Wire.h>
-#include <FastLED.h>
+
+
 #include <Control_Surface.h> // Include the Control Surface library
-#include <Display/DisplayInterfaces/DisplayInterfaceSSD1306.hpp> // Include the display interface you'd like to use
+//#include <Display/DisplayInterfaces/DisplayInterfaceSSD1306.hpp> // Include the display interface you'd like to use
+
+#include <display.h>
+#include <lights.h>
 
 // ----------------------------- MIDI Interface ----------------------------- //
 BluetoothMIDI_Interface midi;
 
-//----------------------------- NEOPIXEL Interface ----------------------------- //
-// Define the array of LEDs.
-Array<CRGB, 12> leds {};
+
 
 
 // ----------------------------- Display setup ------------------------------ //
-
+/**
 constexpr uint8_t SCREEN_WIDTH = 128;
 constexpr uint8_t SCREEN_HEIGHT = 64;
 constexpr int8_t OLED_reset = -1; // Use the external RC circuit for reset
@@ -52,7 +53,7 @@ class MySSD1306_DisplayInterface : public SSD1306_DisplayInterface {
 /*
  * Define all elements that listen for MIDI messages.
  */
-
+/**
 // Main MCU LCD screen, used to get track names
 MCU::LCD<> lcd {};
 
@@ -68,10 +69,9 @@ NoteValue solo[2] {
   {MCU::SOLO_2},
   
 };
+**/
 
-//Rude solo
-NoteValue rudeSolo {MCU::RUDE_SOLO};
-
+/**
 // Record arm / ready
 NoteValue recrdy[2] {
   {MCU::REC_RDY_1},
@@ -138,7 +138,7 @@ MCU::VUDisplay<> vuDisp[2] {
 };
 
 
-
+*/
 
 //----------------------------------Output ---------------------------------- //
 
@@ -192,24 +192,31 @@ PBSmartPot potentiometer2 {
    Channel_2,                           // Channel volume of channel 1
 };
 
-
+NoteValue mute3 {MCU::MUTE_3};
 
 // --------------------------------- Setup ---------------------------------- //
 
 void setup() {
 
    // FastLED setup
+   /**
   FastLED.addLeds<NEOPIXEL, ledPin>(leds.data, leds.length);
   FastLED.setCorrection(TypicalPixelString);
   FastLED.setBrightness(ledBrightness);
+  */
+
+    
 
     // Initialize Serial for debugging
   Serial.begin(115200);
+
+  initializeLeds();
   
   RelativeCCSender::setMode(relativeCCmode::MACKIE_CONTROL_RELATIVE);
-  Wire.begin(); // Initialize I2C communication
+  
   Control_Surface.begin(); // Initialize Control Surface
-  display.begin(); // Initialize the display
+  initializeDisplay();
+
   
   // Debugging: Print the initial state
   //Serial.print("Initial VU value: ");
@@ -223,11 +230,11 @@ void setup() {
 
 void loop() {
   Control_Surface.loop(); // Refresh all elements
-  display.display(); // Update the display
+  updateDisplay(); // Update the display
   //Faders
   //Serial.println(mainFaders[1].getRawValue());
-  Serial.println("The bank is........................................");
-  Serial.println(bank.getSelection());
+  //Serial.println("The bank is........................................");
+  //Serial.println(bank.getSelection());
 
   // You can request the state of the smart potentiometer:
   if (potentiometer1.getState() == PBSmartPot::Lower) {
@@ -245,41 +252,5 @@ void loop() {
     // Turn on an LED to indicate that the potentiometer
     // value is too high to be active
   }
-
-  
-  // Draw boxes around VU meters to visualize their positions
-  for (int i = 0; i < 2; ++i) {
-    ssd1306Display.drawRect((80*i), 40, 16, 12, WHITE); // Adjust the dimensions and position as needed
-  }
-
-    ssd1306Display.drawChar(0,5,'C',WHITE,BLACK,2);
-     // Method 2: Using static_cast
-    char ch2 = int(bank.getSelection() + 48);
-  ssd1306Display.drawChar(20,5,ch2,WHITE,BLACK,2);
-  ssd1306Display.display(); // Update the display
-  updateLEDs();
-}
-
-void updateLEDs() {
-  // Clear all LEDs
-  fill_solid(leds.data, leds.length, CRGB::Black);
-
-  
-  
-// Try to add the rude solo logic... NoteValue rudeSolo {MCU::RUDE_SOLO};
-if (rudeSolo.getValue() == true) {
-  for (uint8_t i = 0; i < 12; ++i) { // Use the value for the first bank
-    leds[i] = CRGB::Red;
-  }
-        // Clear the dirty flag to acknowledge the change
-    //rudeSolo.clearDirty();
-  } else {
-    // Set LEDs based on VU meter value
-  for (uint8_t i = 0; i < vpot[0].getPosition(); ++i) { // Use the value for the first bank
-    leds[i] = CRGB::Green;
-  }
-}
-
-  // Show the updated LED state
-  FastLED.show();
+  updateLeds();
 }
