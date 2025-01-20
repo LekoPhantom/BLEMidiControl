@@ -1,9 +1,7 @@
-#include <Wire.h>
 
 #include <Display/DisplayInterfaces/DisplayInterfaceSSD1306.hpp> // Include the display interface you'd like to use
 #include <Control_Surface.h> // Include the Control Surface library
 #include <display.h>
-
 #include <Wire.h>
 // ----------------------------- Display setup ------------------------------ //
 

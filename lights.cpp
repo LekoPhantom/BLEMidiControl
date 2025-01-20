@@ -1,4 +1,4 @@
-#include <ButtonAssignments.h>
+#include <PinAssignments.h>
 
 //----------------------------- NEOPIXEL Interface ----------------------------- //
 // Define the array of LEDs.
