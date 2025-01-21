@@ -7,21 +7,21 @@
 // https://lastminuteengineers.com/esp32-pinout-reference/
 
 /**   Here are the ESP32 Assignments that are constructed below...
-*                EN      23 Mute1
-*        Enc1A   36*     22 Sck
-*        Enc1B   39*     1  -- If you use these, you cannot flash...
-*        JoyX    34*     3  -- If you use these, you cannot flash...
-*        JoyY    35*     21 Sda
-*        Play    32      19 Solo1
-*        Stop    33      18 Right
-*        rReady  25      5$ ledPin
-*        Rewind  26      17 Select1
-*        fFwd    27      16 Down
-*        Option  14      4  rReady1
-*        MuteAll 12#     2^ 
-*        Up      13      15 Left
-*                Gnd     Gnd
-*                Vin     3v3
+*                 EN      23 Solo1
+*        MainFad  36*     22 Sck
+*        Chan1Fad 39*     1  -- If you use these, you cannot flash...
+*        JoyX     34*     3  -- If you use these, you cannot flash...
+*        JoyY     35*     21 Sda
+*        incMin   32      19 Mute1
+*        incP     33      18 Select1
+*          Up     25      5$ ledPin
+*        Down     26      17 Option
+*        Stop     27      16 
+*        Play     14      4  Enc1A
+*        Record   12#     2^ Marker
+*        rReady1  13      15 Enc1B
+*                 Gnd     Gnd
+*                 Vin     3v3
 *      *= Input Only 
 *      #= Must be low during boot 
 *      $=Must be high during boot 
@@ -49,47 +49,53 @@
 //Constants:
 //Banks...
 //Mute .... 
-const int mute1 = 19;
-
+const int mute1Pin = 19;
 
 // Solo
-const int solo1 = 23;
+const int solo1Pin = 23;
 
 //Record Ready
-const int rReady1 = 13;
+const int rReady1Pin = 13;
 
 //Select
-const int select1 = 18;
+const int select1Pin = 18;
+
+//Faders
+const int chan1FaderPin = 39;
+
+//Pots
 
 
-//Encoders
-const int Enc1A = 4;
-const int Enc1B = 15;
 
 //Leds
 const int ledBrightness = 5;
 const int ledPin = 5;
 const int totalNumberLeds = 30;
 
-//Joystick
-const int joyX = 34;
-const int joyY = 35;
-const int joyButton = 2;
-
 //Bank Select
-const int incP = 33;
-const int incMin = 26;
+const int incMinPin = 32;
+const int incPPin = 33;
 
 //Mains...
-const int playPin = 14;
-const int stopPin = 27;
-const int recordPin = 12;
-const int upPin = 25;
-const int downPin = 32;
-const int mainPin = 39;
-const int chan1Pin = 36;
-const int markerPin = 70;
-const int optionPin = 71;
 
+//JogWheel
+const int jogPinA = 4;
+const int jogPinB = 15;
+
+
+//buttons and faders
+const int markerPin = 2;
+const int recordPin = 12;
+const int playPin = 14;
+const int optionPin = 17;
+const int upPin = 25;
+const int downPin = 26;
+const int stopPin = 27;
+const int mainFaderPin = 36;
+
+//Joystick
+const int joyXPin = 34;
+const int joyYPin = 35;
+//const int joyButton = 2;
 
 #endif
