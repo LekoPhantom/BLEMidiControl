@@ -86,6 +86,8 @@ MCU::VU vu[2] {
   {2, MCU::VUDecay::Default},
 };
 
+//Add a buffer to store the bank characters...
+char buffer [33];
 
 // ---------------------------- Display Elements ---------------------------- //
 // ========================================================================== //
