@@ -1,5 +1,5 @@
 #include <PinAssignments.h>
-#include <FastLED.h>
+//#include <FastLED.h>
 
 #include <Control_Surface.h> // Include the Control Surface library
 //#include <Display/DisplayInterfaces/DisplayInterfaceSSD1306.hpp> // Include the display interface you'd like to use

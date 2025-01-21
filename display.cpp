@@ -3,6 +3,8 @@
 #include <Control_Surface.h> // Include the Control Surface library
 #include <display.h>
 #include <Wire.h>
+#include <MCUAssignments.h>
+#include <lights.h>
 // ----------------------------- Display setup ------------------------------ //
 
 constexpr uint8_t SCREEN_WIDTH = 128;
@@ -37,6 +39,8 @@ class MySSD1306_DisplayInterface : public SSD1306_DisplayInterface {
     void drawBackground() override {}
 } display = {ssd1306Display};
 
+
+
 // -------------------------- MIDI Input Elements --------------------------- //
 // ========================================================================== //
 
@@ -44,6 +48,7 @@ class MySSD1306_DisplayInterface : public SSD1306_DisplayInterface {
  * Define all elements that listen for MIDI messages.
  */
 
+ NoteValue rudeSolo {MCU::RUDE_SOLO};
 // Main MCU LCD screen, used to get track names
 MCU::LCD<> lcd {};
 
@@ -80,6 +85,7 @@ MCU::VU vu[2] {
   {1, MCU::VUDecay::Default},
   {2, MCU::VUDecay::Default},
 };
+
 
 // ---------------------------- Display Elements ---------------------------- //
 // ========================================================================== //
@@ -138,3 +144,13 @@ void updateDisplay(){
   display.display(); // Update the display
 }
 
+
+uint8_t getRudy() {
+  uint8_t rudy = rudeSolo.getValue();
+  return rudy;
+}
+
+uint8_t getVu() {
+  uint8_t vuValue = vu[0].getValue();
+  return vuValue;
+}

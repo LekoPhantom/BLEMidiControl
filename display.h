@@ -4,4 +4,7 @@
 void initializeDisplay();
 void updateDisplay();
 
+uint8_t getRudy();
+uint8_t getVu();
+
 #endif

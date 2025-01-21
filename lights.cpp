@@ -6,11 +6,11 @@
 
 #include <FastLED.h>
 #include <Control_Surface.h> // Include the Control Surface library
+#include <display.h>
+
 
 CRGB leds[totalNumberLeds];
 
-//Rude solo
-NoteValue rudeSolo {MCU::RUDE_SOLO};
 
 void initializeLeds(){
    // FastLED setup
@@ -25,20 +25,25 @@ void updateLeds() {
   // Clear all LEDs
    fill_solid(leds, totalNumberLeds, CRGB::Black);
 
-  //NoteValue rudeSolo {MCU::RUDE_SOLO};
-  
 // Try to add the rude solo logic... 
 
-if (rudeSolo.getValue() == true) {
+if (getRudy() == true) {
   for (uint8_t i = 0; i < totalNumberLeds; ++i) { // Use the value for the first bank
     leds[i] = CRGB::Red;
   }
         // Clear the dirty flag to acknowledge the change
     //rudeSolo.clearDirty();
-  } else {
+  } else if (getVu() != 0){
+    uint8_t vuValue = getVu();
+    if (vuValue == 12){
+        for (uint8_t i = 0; i < vuValue; ++i) { // Use the value for the first bank
+    leds[i+2] = CRGB::Red;
+    }} else {
     // Set LEDs based on VU meter value
-  //for (uint8_t i = 0; i < vpot[0].getPosition(); ++i) { // Use the value for the first bank
-  //  leds[i] = CRGB::Green;
+   for (uint8_t i = 0; i < vuValue; ++i) { // Use the value for the first bank
+    leds[i] = CRGB::Green;
+   }}
+  } else {
   //rainbow_beat();
 
  uint8_t beatA = beatsin8(17, 0, 255);                        // Starting hue
