@@ -4,7 +4,7 @@
 void initializeLeds();
 void updateLeds();
 void rainbow_beat();
-
-
+void rainbow();
+void newRainbow();
 
 #endif

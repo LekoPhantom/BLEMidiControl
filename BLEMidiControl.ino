@@ -6,6 +6,8 @@
 #include <display.h>
 #include <lights.h>
 #include <OI.h>
+#include <RX.h>
+
 
 // ----------------------------- MIDI Interface ----------------------------- //
 BluetoothMIDI_Interface midi;
@@ -23,6 +25,7 @@ void setup() {
   
   Control_Surface.begin(); // Initialize Control Surface
   initializeDisplay();
+  
 }
 
 // ---------------------------------- Loop ---------------------------------- //

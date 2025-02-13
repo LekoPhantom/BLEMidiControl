@@ -23,12 +23,12 @@ IncrementDecrementSelector<4> selector {bank, {incPPin, incMinPin}};
 
 
 Bankable::NoteButton mute_switches[] {
-  {{bank, BankType::ChangeAddress}, mute1Pin , {MCU::MUTE_1}},
+  {{bank, BankType::ChangeAddress}, mute1Pin , {MCU::MUTE_1}}, //+
 };
 
 // Solo
 Bankable::NoteButton solo_switches[] { 
-  {{bank, BankType::ChangeAddress}, solo1Pin, {MCU::SOLO_1}},
+  {{bank, BankType::ChangeAddress}, solo1Pin, {MCU::SOLO_1}}, //+
   
 };
 
@@ -37,68 +37,66 @@ Bankable::NoteButton rec_switches[] {
 };
 
 Bankable::NoteButton select_switches[] {
-  {{bank, BankType::ChangeAddress}, rReady1Pin, {MCU::REC_RDY_1}},
+  {{bank, BankType::ChangeAddress}, select1Pin, {MCU::SELECT_1}},
 };
 //Potentiometers?
 using  PBSmartPot = Bankable::PBSmartPotentiometer<4>;
 
 // Instantiate a CCPotentiometer object
-PBSmartPot ChanFader {
-  {bank, BankType::ChangeChannel},      // Bank configuration
-  chan1FaderPin,                                   // Analog pin connected to potentiometer
-   Channel_1, // Channel volume of channel 1
-};
+//PBSmartPot ChanFader {
+ // {bank, BankType::ChangeChannel},      // Bank configuration
+ // chan1FaderPin,                                   // Analog pin connected to potentiometer
+ //  Channel_1, // Channel volume of channel 1
+//}; 
 
 //----------------------------------Instatiate the Mains---------------------------------- //
-
+//Use NoteButtons instead of CC if you want to use the MCU namespace...
 // Instantiate a CCButton object
-CCButton marker {
+NoteButton marker {
   markerPin, //Pin
   {MCU::MARKER}, //MCU Controller (You can use general MIDICC or raw value as well...)
 };
 
-CCButton record {
+NoteButton record {
   recordPin, //Pin
   {MCU::RECORD},//MCU Controller (You can use general MIDICC or raw value as well...)
 };
 
-CCButton play {
+NoteButton play {
   playPin, //Pin
   {MCU::PLAY},//MCU Controller (You can use general MIDICC or raw value as well...)
 };
 
-CCButton option {
+NoteButton option {
   optionPin, //Pin
   {MCU::OPTION},//MCU Controller (You can use general MIDICC or raw value as well...)
 };
 
-CCButton up {
-  upPin, //Pin
-  {MCU::UP},//MCU Controller (You can use general MIDICC or raw value as well...)
-};
 
-CCButton down {
-  downPin, //Pin
-  {MCU::DOWN},//MCU Controller (You can use general MIDICC or raw value as well...)
-};
-
-CCButton stop {
+NoteButton stop {
   stopPin, //Pin
   {MCU::STOP},//MCU Controller (You can use general MIDICC or raw value as well...)
 };
 
 //JogWheel
-CCRotaryEncoder enc {
+CCRotaryEncoder jogScrubEnc {
   {jogPinA,jogPinB}, // pins
   MCU::JOG_WHEEL, // address
-  5,              // multiplier
-  4,              // pulses per click
-};
+  4,              // multiplier
+  1,              // pulses per click
+};  //+
+//JogWheel
+CCRotaryEncoder vpot1 {
+  {vPot1PinA,vPot1PinB}, // pins
+  MCU::V_POT_1, // address
+  4,              // multiplier
+  1,              // pulses per click
+};  //+
 // Instantiate a PBPotentiometer object
-PBPotentiometer mainFader {
-  mainFaderPin,        // Analog pin connected to potentiometer
-  {MCU::MASTER_VOLUME}, // Main Volume
-};
+//PBPotentiometer mainFader {
+//  mainFaderPin,        // Analog pin connected to potentiometer
+//  {MCU::MASTER_VOLUME}, // Main Volume
+//};
 
 // Joystick? 
 

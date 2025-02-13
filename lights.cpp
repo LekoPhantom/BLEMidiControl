@@ -7,10 +7,16 @@
 #include <FastLED.h>
 #include <Control_Surface.h> // Include the Control Surface library
 #include <display.h>
+#include <lights.h>
 
 
 CRGB leds[totalNumberLeds];
 
+uint8_t gHue = 0;
+
+
+
+long maxBrightness = 60;
 
 void initializeLeds(){
    // FastLED setup
@@ -23,7 +29,7 @@ void initializeLeds(){
 
 void updateLeds() {
   // Clear all LEDs
-   fill_solid(leds, totalNumberLeds, CRGB::Black);
+ fill_solid(leds, totalNumberLeds, CRGB::Black);
 
 // Try to add the rude solo logic... 
 
@@ -44,11 +50,9 @@ if (getRudy() == true) {
     leds[i] = CRGB::Green;
    }}
   } else {
-  //rainbow_beat();
-
- uint8_t beatA = beatsin8(17, 0, 255);                        // Starting hue
-  uint8_t beatB = beatsin8(13, 0, 255);
-  fill_rainbow(leds, totalNumberLeds, (beatA+beatB)/2, 8);            // Use FastLED's fill_rainbow routine.
+    //include the header file to use separate methods
+  newRainbow();
+  //rainbow();
 
   }
   
@@ -58,10 +62,28 @@ if (getRudy() == true) {
 }
 
 
+void rainbow() 
+{
+  
+  // FastLED's built-in rainbow generator
+  fill_rainbow( leds, totalNumberLeds, gHue, 1);
+}
+
+void newRainbow(){
+  for (int i = 0; i < totalNumberLeds; i++) {
+    //leds[i] = CHSV(hue, 255, 255);
+    leds[i] = CHSV(gHue + (i * 10), 255, 255);
+  }
+
+  EVERY_N_MILLISECONDS(15){
+    gHue++;
+  }
+}
+
 void rainbow_beat() {
   
   uint8_t beatA = beatsin8(17, 0, 255);                        // Starting hue
   uint8_t beatB = beatsin8(13, 0, 255);
-  fill_rainbow(leds, totalNumberLeds, (beatA+beatB)/2, 8);            // Use FastLED's fill_rainbow routine.
+  fill_rainbow(leds, totalNumberLeds, (beatA)/2, 8);            // Use FastLED's fill_rainbow routine.
 
 } // rainbow_beat()
