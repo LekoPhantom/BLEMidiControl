@@ -8,7 +8,7 @@
 
 /**   Here are the ESP32 Assignments that are constructed below...
 *                 EN      23 Solo1
-*        FF       36*     22 Sck
+*        FF       36*     22 Sdcl
 *        loop     39*     1  -- If you use these, you cannot flash...
 *                 34*     3  -- If you use these, you cannot flash...
 *                 35*     21 Sda
@@ -29,25 +29,26 @@
 
 *       Arduino Nano....
 *                      1    ...     Vin (square)
-*                      2    ...     GND  
+*                      2    ...     GND   
 *                      3            28
 *                      GND          5v
-*      c1m1            5 D2      A7 26  
-*      c1m2            6 D3      A6 25
-*                      7 D4      A5 24
-*                      8 D5      A4 23
+*      c1 m1           5 D2      A7 26  
+*      c1 m2           6 D3      A6 25
+*                      7 D4      A5 24 Sda
+*                      8 D5      A4 23 Sdcl
 *                      9 D6      A3 22
-*                     10 D7     A2 21
-*      c1 FT          11 D8     A1 20
-*                     12 D9     A0 19 c1FA
-*                     13 D10   Ref 18
-*                     14 D11    3.3v
-*                     15 D12   D13 16
+*      M m1           10 D7      A2 21
+*      c1 FT          11 D8      A1 20 M  FA
+*      M  FT          12 D9      A0 19 c1 FA
+*                     13 D10    Ref 18
+*      M m2           14 D11      3.3v
+*                     15 D12    D13 16
 *        c = Channel
          m = Motor
          F = Fader
          T = Touch
          A = Analog (the wiper of the fader)
+         M = Mains
 */
 
 
